@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1750c670e57fec54ba33ace91777f253, type: 3}
   m_Name: NovicePotion
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 5734250149334420351, guid: 07e20307c1a3656479239c00eb1e5cbf, type: 3}
   type: 3
   description: A potion created by a Noive alchemist through the lost art of Alchemy.
     Heals 30 HP.

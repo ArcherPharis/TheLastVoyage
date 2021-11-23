@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4122400096959805630, guid: d1a6c77e5ed378849ab92830a7327018, type: 3}
       propertyPath: m_Name
-      value: RedKeyIcon
+      value: NovicePotion
       objectReference: {fileID: 0}
     - target: {fileID: 4175505918112845062, guid: d1a6c77e5ed378849ab92830a7327018, type: 3}
       propertyPath: m_Type
@@ -25,15 +25,15 @@ PrefabInstance:
       objectReference: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 4175505918112845062, guid: d1a6c77e5ed378849ab92830a7327018, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4175505918112845062, guid: d1a6c77e5ed378849ab92830a7327018, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 0.6910567
       objectReference: {fileID: 0}
     - target: {fileID: 4175505918112845062, guid: d1a6c77e5ed378849ab92830a7327018, type: 3}
       propertyPath: m_Color.r
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6904001692831141661, guid: d1a6c77e5ed378849ab92830a7327018, type: 3}
       propertyPath: m_Pivot.x

@@ -18,6 +18,7 @@ public class PlayerControl : MonoBehaviour
         controller = GetComponent<CharacterController>();
         inputs = Inputs.InputInstance;
         cameraTransform = Camera.main.transform;
+        
     }
 
     void Update()

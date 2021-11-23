@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,5 +23,10 @@ public class Player : MonoBehaviour
     private void OnApplicationQuit()
     {
         //inventory.ContainerOfInventory.Clear();
+    }
+
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }

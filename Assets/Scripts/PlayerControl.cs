@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerControl : MonoBehaviour
@@ -11,18 +12,64 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] float playerSpeed = 2.0f;
     [SerializeField] float jumpHeight = 1.0f;
     [SerializeField] private float gravityValue = -9.81f;
+    [SerializeField] Camera cam;
+    [SerializeField] float interactDistance;
     Inputs inputs;
+    Player player;
 
     private void Start()
     {
         controller = GetComponent<CharacterController>();
         inputs = Inputs.InputInstance;
         cameraTransform = Camera.main.transform;
+        player = GetComponent<Player>();        
+    }
+
+    void Save()
+    {
+        if (inputs.PlayerSaved())
+        {
+            player.inventory.Save();
+            Debug.Log("Player saved!");
+        }
         
+    }
+
+    void Load()
+    {
+        if (inputs.PlayerLoaded())
+        {
+            player.inventory.Load();
+            Debug.Log("Player loaded!");
+        }
+        
+    }
+
+    void Interact()
+    {
+        RaycastHit interacted;
+        Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+        if(Physics.Raycast(ray, out interacted, interactDistance) && inputs.PlayerInteracted())
+        {
+            var item = interacted.collider.GetComponent<GroundItem>();
+
+            if (item)
+            {
+                player.inventory.AddItem(new Item(item.item), 1);
+                Destroy(interacted.collider.gameObject);
+            }
+        }
+
+
     }
 
     void Update()
     {
+
+        Interact();
+        Save();
+        Load();
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
         {
@@ -45,5 +92,6 @@ public class PlayerControl : MonoBehaviour
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+        
     }
 }

@@ -41,6 +41,14 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""dd8dcf87-abd8-49d8-a9c5-ebb27a2a705e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -120,6 +128,63 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8f3dd005-2a34-4132-b7c4-0cce3020a54a"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""UI"",
+            ""id"": ""088639c6-a15a-4a78-a30f-79fa922730d6"",
+            ""actions"": [
+                {
+                    ""name"": ""Save"",
+                    ""type"": ""Button"",
+                    ""id"": ""c4a8e151-41b8-4917-9931-d6325db0810b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Load"",
+                    ""type"": ""Button"",
+                    ""id"": ""088bcd2f-a77f-4fca-9a54-56166a69317b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""e5b377bb-3bf0-4542-842b-d234ddb22d92"",
+                    ""path"": ""<Keyboard>/numpadPlus"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Save"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6cb2ad2c-66f3-4675-8f95-20428e29baa3"",
+                    ""path"": ""<Keyboard>/numpadMinus"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Load"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -131,6 +196,11 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         m_PlayerMovement_Movement = m_PlayerMovement.FindAction("Movement", throwIfNotFound: true);
         m_PlayerMovement_Jump = m_PlayerMovement.FindAction("Jump", throwIfNotFound: true);
         m_PlayerMovement_Look = m_PlayerMovement.FindAction("Look", throwIfNotFound: true);
+        m_PlayerMovement_Interact = m_PlayerMovement.FindAction("Interact", throwIfNotFound: true);
+        // UI
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+        m_UI_Save = m_UI.FindAction("Save", throwIfNotFound: true);
+        m_UI_Load = m_UI.FindAction("Load", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -183,6 +253,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerMovement_Movement;
     private readonly InputAction m_PlayerMovement_Jump;
     private readonly InputAction m_PlayerMovement_Look;
+    private readonly InputAction m_PlayerMovement_Interact;
     public struct PlayerMovementActions
     {
         private @PlayerInputs m_Wrapper;
@@ -190,6 +261,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         public InputAction @Movement => m_Wrapper.m_PlayerMovement_Movement;
         public InputAction @Jump => m_Wrapper.m_PlayerMovement_Jump;
         public InputAction @Look => m_Wrapper.m_PlayerMovement_Look;
+        public InputAction @Interact => m_Wrapper.m_PlayerMovement_Interact;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -208,6 +280,9 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @Look.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnLook;
+                @Interact.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnInteract;
             }
             m_Wrapper.m_PlayerMovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -221,14 +296,64 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
         }
     }
     public PlayerMovementActions @PlayerMovement => new PlayerMovementActions(this);
+
+    // UI
+    private readonly InputActionMap m_UI;
+    private IUIActions m_UIActionsCallbackInterface;
+    private readonly InputAction m_UI_Save;
+    private readonly InputAction m_UI_Load;
+    public struct UIActions
+    {
+        private @PlayerInputs m_Wrapper;
+        public UIActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Save => m_Wrapper.m_UI_Save;
+        public InputAction @Load => m_Wrapper.m_UI_Load;
+        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+        public void SetCallbacks(IUIActions instance)
+        {
+            if (m_Wrapper.m_UIActionsCallbackInterface != null)
+            {
+                @Save.started -= m_Wrapper.m_UIActionsCallbackInterface.OnSave;
+                @Save.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnSave;
+                @Save.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnSave;
+                @Load.started -= m_Wrapper.m_UIActionsCallbackInterface.OnLoad;
+                @Load.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnLoad;
+                @Load.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnLoad;
+            }
+            m_Wrapper.m_UIActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Save.started += instance.OnSave;
+                @Save.performed += instance.OnSave;
+                @Save.canceled += instance.OnSave;
+                @Load.started += instance.OnLoad;
+                @Load.performed += instance.OnLoad;
+                @Load.canceled += instance.OnLoad;
+            }
+        }
+    }
+    public UIActions @UI => new UIActions(this);
     public interface IPlayerMovementActions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
+    }
+    public interface IUIActions
+    {
+        void OnSave(InputAction.CallbackContext context);
+        void OnLoad(InputAction.CallbackContext context);
     }
 }

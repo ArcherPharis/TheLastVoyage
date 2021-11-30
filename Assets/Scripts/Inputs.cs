@@ -51,4 +51,19 @@ public class Inputs : MonoBehaviour
     {
         return playerInputs.PlayerMovement.Jump.triggered;
     }
+
+    public bool PlayerInteracted()
+    {
+        return playerInputs.PlayerMovement.Interact.triggered;
+    }
+
+    public bool PlayerSaved()
+    {
+        return playerInputs.UI.Save.triggered;
+    }
+
+    public bool PlayerLoaded()
+    {
+        return playerInputs.UI.Load.triggered;
+    }
 }

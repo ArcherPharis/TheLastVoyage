@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbec33f7271f6e64c87ca42d97050567, type: 3}
   m_Name: RedKey
   m_EditorClassIdentifier: 
-  prefab: {fileID: 5734250149334420351, guid: b765a447aa99a994097b2460dbf97425, type: 3}
+  ID: 0
+  uiDisplay: {fileID: 21300000, guid: 67f8cf93f5901bd4e89c34085f964751, type: 3}
   type: 4
   description: A key used for a certain door.
+  buffs: []

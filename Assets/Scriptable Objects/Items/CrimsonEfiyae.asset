@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f39720b02bf2045489a679aaa48bad43, type: 3}
+  m_Name: CrimsonEfiyae
+  m_EditorClassIdentifier: 
+  ID: 2
+  uiDisplay: {fileID: 21300000, guid: 9dc7afbcf3991534e82d3c23f3e503c0, type: 3}
+  type: 1
+  description: "An adult Crimson Efiyae in its early stages of Adulthood, offers
+    the ability to use basic Fire based phrases.\n\nAll Efiyae are different and
+    offer different benefits (or negatives)\nto those they are attuned to. \n\nThese
+    young adults usually offer no special ability, and are the\nbest candidates for
+    necessary sacrifices to improve your\npower."
+  buffs:
+  - attribute: 0
+    value: 0
+    min: 3
+    max: 10
+  - attribute: 2
+    value: 0
+    min: 7
+    max: 14
+  - attribute: 5
+    value: 0
+    min: 3
+    max: 3

@@ -12,8 +12,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5561fa5a81c41424e852a6df34c6cb8e, type: 3}
   m_Name: PlayerInventory
   m_EditorClassIdentifier: 
+  savePath: /inventory.lvif
+  database: {fileID: 11400000, guid: e40447d485820cf4fa4922fd512c137f, type: 2}
   ContainerOfInventory:
-  - item: {fileID: 11400000, guid: d785d5c92eef9f949be3122408c026ef, type: 2}
-    quantityOfItems: 3
-  - item: {fileID: 11400000, guid: b2ae5810d860bd54b94a49d7d5288234, type: 2}
-    quantityOfItems: 7
+    Items:
+    - ID: -1
+      item:
+        Name: 
+        ID: 0
+        buffs: []
+      quantityOfItems: 0
+    - ID: -1
+      item:
+        Name: 
+        ID: 0
+        buffs: []
+      quantityOfItems: 0
+    - ID: -1
+      item:
+        Name: 
+        ID: 0
+        buffs: []
+      quantityOfItems: 0
+    - ID: -1
+      item:
+        Name: 
+        ID: 0
+        buffs: []
+      quantityOfItems: 0
+    - ID: -1
+      item:
+        Name: 
+        ID: 0
+        buffs: []
+      quantityOfItems: 0
+    - ID: -1
+      item:
+        Name: 
+        ID: 0
+        buffs: []
+      quantityOfItems: 0
+    - ID: -1
+      item:
+        Name: 
+        ID: 0
+        buffs: []
+      quantityOfItems: 0

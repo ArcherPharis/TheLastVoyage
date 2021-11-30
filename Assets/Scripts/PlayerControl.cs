@@ -10,12 +10,14 @@ public class PlayerControl : MonoBehaviour
     private bool groundedPlayer;
     Transform cameraTransform;
     [SerializeField] float playerSpeed = 2.0f;
+    [SerializeField] private float runSpeed = 2.0f;
     [SerializeField] float jumpHeight = 1.0f;
     [SerializeField] private float gravityValue = -9.81f;
     [SerializeField] Camera cam;
     [SerializeField] float interactDistance;
     Inputs inputs;
     Player player;
+    
 
     private void Start()
     {
@@ -62,6 +64,24 @@ public class PlayerControl : MonoBehaviour
         }
 
 
+
+
+    }
+    
+    public void PlayerRun()
+    {
+        float originalSpeed = playerSpeed;
+        float newSpeed = playerSpeed * runSpeed;
+
+        if (inputs.PlayerSprinted())
+        {
+            playerSpeed = newSpeed;
+        }
+        
+        else 
+        {
+            playerSpeed = originalSpeed;
+        }
     }
 
     void Update()
@@ -70,6 +90,8 @@ public class PlayerControl : MonoBehaviour
         Interact();
         Save();
         Load();
+        PlayerRun();
+
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
         {

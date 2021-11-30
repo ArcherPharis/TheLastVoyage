@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Inputs : MonoBehaviour
 {
@@ -65,5 +66,10 @@ public class Inputs : MonoBehaviour
     public bool PlayerLoaded()
     {
         return playerInputs.UI.Load.triggered;
+    }
+
+    public bool PlayerSprinted()
+    {
+        return playerInputs.PlayerMovement.Run.triggered;
     }
 }

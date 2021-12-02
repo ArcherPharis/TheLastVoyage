@@ -1,4 +1,5 @@
 
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,6 +16,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private float gravityValue = -9.81f;
     [SerializeField] Camera cam;
     [SerializeField] float interactDistance;
+    [SerializeField] bool notRunning = true;
     Inputs inputs;
     Player player;
     
@@ -26,6 +28,8 @@ public class PlayerControl : MonoBehaviour
         cameraTransform = Camera.main.transform;
         player = GetComponent<Player>();        
     }
+
+
 
     void Save()
     {
@@ -71,17 +75,35 @@ public class PlayerControl : MonoBehaviour
     public void PlayerRun()
     {
         float originalSpeed = playerSpeed;
-        float newSpeed = playerSpeed * runSpeed;
-
-        if (inputs.PlayerSprinted())
+        float newSpeed = 8f;
+        
+        if (notRunning)
         {
+            playerSpeed = 4f;
+        }
+        else if(inputs.PlayerIsSprinting())
+        {
+
             playerSpeed = newSpeed;
         }
-        
-        else 
+
+        if (inputs.PlayerIsPressingSprint())
         {
-            playerSpeed = originalSpeed;
+            
+            notRunning = false;
+            
+            
+            
         }
+        else
+        {
+            notRunning = true;
+        }
+
+     
+        Debug.Log(originalSpeed);
+
+
     }
 
     void Update()

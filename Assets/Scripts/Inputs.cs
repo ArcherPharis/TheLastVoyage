@@ -68,8 +68,15 @@ public class Inputs : MonoBehaviour
         return playerInputs.UI.Load.triggered;
     }
 
-    public bool PlayerSprinted()
+    public bool PlayerIsPressingSprint()
+    {
+        return playerInputs.PlayerMovement.Run.activeControl != null;
+    }
+
+    public bool PlayerIsSprinting()
     {
         return playerInputs.PlayerMovement.Run.triggered;
     }
+
+
 }

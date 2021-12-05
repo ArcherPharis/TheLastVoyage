@@ -1,0 +1,130 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5561fa5a81c41424e852a6df34c6cb8e, type: 3}
+  m_Name: PlayerEquipment
+  m_EditorClassIdentifier: 
+  savePath: 
+  database: {fileID: 11400000, guid: e40447d485820cf4fa4922fd512c137f, type: 2}
+  ContainerOfInventory:
+    Items:
+    - AllowedItems: 02000000
+      parent: {fileID: 0}
+      ID: 2
+      item:
+        Name: CrimsonEfiyae
+        ID: 2
+        buffs:
+        - attribute: 0
+          value: 6
+          min: 3
+          max: 10
+        - attribute: 2
+          value: 13
+          min: 7
+          max: 14
+        - attribute: 5
+          value: 3
+          min: 3
+          max: 3
+      quantityOfItems: 1
+    - AllowedItems: 02000000
+      parent: {fileID: 0}
+      ID: -1
+      item:
+        Name: 
+        ID: -1
+        buffs: []
+      quantityOfItems: 0
+    - AllowedItems: 02000000
+      parent: {fileID: 0}
+      ID: -1
+      item:
+        Name: 
+        ID: -1
+        buffs: []
+      quantityOfItems: 0
+    - AllowedItems: 02000000
+      parent: {fileID: 0}
+      ID: 2
+      item:
+        Name: CrimsonEfiyae
+        ID: 2
+        buffs:
+        - attribute: 0
+          value: 8
+          min: 3
+          max: 10
+        - attribute: 2
+          value: 7
+          min: 7
+          max: 14
+        - attribute: 5
+          value: 3
+          min: 3
+          max: 3
+      quantityOfItems: 1
+    - AllowedItems: 01000000
+      parent: {fileID: 0}
+      ID: 3
+      item:
+        Name: MicroImpactDrill
+        ID: 3
+        buffs: []
+      quantityOfItems: 1
+    - AllowedItems: 03000000
+      parent: {fileID: 0}
+      ID: 4
+      item:
+        Name: GasMask
+        ID: 4
+        buffs: []
+      quantityOfItems: 1
+    - AllowedItems: 05000000
+      parent: {fileID: 0}
+      ID: -1
+      item:
+        Name: 
+        ID: 0
+        buffs: []
+      quantityOfItems: 0
+    - AllowedItems: 05000000
+      parent: {fileID: 0}
+      ID: -1
+      item:
+        Name: 
+        ID: -1
+        buffs: []
+      quantityOfItems: 0
+    - AllowedItems: 05000000
+      parent: {fileID: 0}
+      ID: 1
+      item:
+        Name: NovicePotion
+        ID: 1
+        buffs: []
+      quantityOfItems: 1
+    - AllowedItems: 05000000
+      parent: {fileID: 0}
+      ID: -1
+      item:
+        Name: 
+        ID: -1
+        buffs: []
+      quantityOfItems: 0
+    - AllowedItems: 05000000
+      parent: {fileID: 0}
+      ID: 1
+      item:
+        Name: NovicePotion
+        ID: 1
+        buffs: []
+      quantityOfItems: 1

@@ -50,6 +50,24 @@ public class InventoryObject : ScriptableObject
         return null;
     }
 
+    public void MoveItem(InventorySlot item1, InventorySlot item2)
+    {
+        InventorySlot temp = new InventorySlot(item2.ID, item2.item, item2.quantityOfItems);
+        item2.UpdateSlot(item1.ID, item1.item, item1.quantityOfItems);
+        item1.UpdateSlot(temp.ID, temp.item, temp.quantityOfItems);
+    }
+
+    public void DropItem(Item item)
+    {
+        for (int i = 0; i < ContainerOfInventory.Items.Length; i++)
+        {
+            if(ContainerOfInventory.Items[i].item == item)
+            {
+                ContainerOfInventory.Items[i].UpdateSlot(-1, null, 0);
+            }
+        }
+    }
+
     [ContextMenu("Save")]
     public void Save()
     {
@@ -77,7 +95,11 @@ public class InventoryObject : ScriptableObject
 
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new FileStream(string.Concat(Application.persistentDataPath, savePath), FileMode.Open, FileAccess.Read);
-            ContainerOfInventory = (Inventory)formatter.Deserialize(stream);
+            Inventory NewContainerOfInventory = (Inventory)formatter.Deserialize(stream);
+            for (int i = 0; i < ContainerOfInventory.Items.Length; i++)
+            {
+                ContainerOfInventory.Items[i].UpdateSlot(NewContainerOfInventory.Items[i].ID, NewContainerOfInventory.Items[i].item, NewContainerOfInventory.Items[i].quantityOfItems);
+            }
             stream.Close();
 
         }
@@ -85,7 +107,7 @@ public class InventoryObject : ScriptableObject
     [ContextMenu("Clear")]
     public void Clear()
     {
-        ContainerOfInventory = new Inventory();
+        ContainerOfInventory.Clear();
     }
 
 
@@ -95,11 +117,20 @@ public class InventoryObject : ScriptableObject
 public class Inventory
 {
     public InventorySlot[] Items = new InventorySlot[7];
+    public void Clear()
+    {
+        for (int i = 0; i < Items.Length; i++)
+        {
+            Items[i].UpdateSlot(-1, new Item(), 0);
+        }
+    }
 }
 
 [System.Serializable]
 public class InventorySlot
 {
+    public ItemType[] AllowedItems = new ItemType[0]; //what items can go in which slots
+    public UserInterface parent;
     public int ID = -1;
     public Item item;
     public int quantityOfItems;
@@ -127,5 +158,21 @@ public class InventorySlot
     public void AddQuantity(int value)
     {
         quantityOfItems += value;
+    }
+
+    public bool CanPlaceInSlot(ItemObject _item)
+    {
+        if (AllowedItems.Length <= 0)
+            return true;
+
+        for (int i = 0; i < AllowedItems.Length; i++)
+        {
+            if(_item.type == AllowedItems[i])
+            
+                return true;
+            
+            
+        }
+        return false;
     }
 }

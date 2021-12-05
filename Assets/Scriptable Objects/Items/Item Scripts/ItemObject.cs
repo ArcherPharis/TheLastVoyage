@@ -4,8 +4,10 @@ using UnityEngine;
 
 public enum ItemType
 {
-    Element, //consumable objects used for crafting or serve as ammunition.
-    Equipment, // Equipped on the player, either a tool, or Efiyae. Some may or may not alter stats.
+    Seedling, //consumable objects used for crafting or serve as ammunition.
+    Tool, // Equipped on the player, either a tool, or Efiyae. Some may or may not alter stats.
+    Efiyae,
+    GasMask,
     Powers, // abilities that can be used at any time and consume the energy meter or phrases that consume inventory items.
     Consumables, //found or crafted restorative or altering, crafted damaging items.
     Default //key items, stuff like keys and stuff that only stays in the inventory.
@@ -47,6 +49,11 @@ public class Item
     public string Name;
     public int ID;
     public ItemBuff[] buffs;
+    public Item()
+    {
+        Name = "";
+        ID = -1;
+    }
     public Item(ItemObject item)
     {
         Name = item.name;

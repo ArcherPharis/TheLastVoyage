@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f39720b02bf2045489a679aaa48bad43, type: 3}
   m_Name: MicroImpactDrill
   m_EditorClassIdentifier: 
-  ID: 3
   uiDisplay: {fileID: 21300000, guid: 2038752a50dc58b42a0330a6de0542d0, type: 3}
+  stackable: 0
   type: 1
   description: "A small device used for destroying small veins of Amberite or Efiyae. 
     \n\nThere's an engraving on the side of the drill that reads ES. I wonder if
     this belongs to somebody?"
-  buffs: []
+  data:
+    Name: 
+    ID: 3
+    buffs: []

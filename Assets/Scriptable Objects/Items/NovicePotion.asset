@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1750c670e57fec54ba33ace91777f253, type: 3}
   m_Name: NovicePotion
   m_EditorClassIdentifier: 
-  ID: 1
   uiDisplay: {fileID: 21300000, guid: d4647430ed4212c498250a6a00331cd8, type: 3}
+  stackable: 1
   type: 5
   description: 'A potion created by a Novice alchemist through the lost art of Alchemy.
     Grants immunity to fire momentarily, but increases
@@ -23,4 +23,7 @@ MonoBehaviour:
 
     Recipe
     is 3 Water Seedlings.'
-  buffs: []
+  data:
+    Name: 
+    ID: 1
+    buffs: []

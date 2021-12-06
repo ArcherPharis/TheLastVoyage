@@ -12,24 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f39720b02bf2045489a679aaa48bad43, type: 3}
   m_Name: CrimsonEfiyae
   m_EditorClassIdentifier: 
-  ID: 2
   uiDisplay: {fileID: 21300000, guid: 9dc7afbcf3991534e82d3c23f3e503c0, type: 3}
-  type: 1
+  stackable: 0
+  type: 2
   description: "An adult Crimson Efiyae in its early stages of Adulthood, offers
     the ability to use basic Fire based phrases.\n\nAll Efiyae are different and
     offer different benefits (or negatives)\nto those they are attuned to. \n\nThese
     young adults usually offer no special ability, and are the\nbest candidates for
     necessary sacrifices to improve your\npower."
-  buffs:
-  - attribute: 0
-    value: 0
-    min: 3
-    max: 10
-  - attribute: 2
-    value: 0
-    min: 7
-    max: 14
-  - attribute: 5
-    value: 0
-    min: 3
-    max: 3
+  data:
+    Name: 
+    ID: 4
+    buffs:
+    - attribute: 0
+      value: 0
+      min: 1
+      max: 4
+    - attribute: 2
+      value: 0
+      min: 2
+      max: 5

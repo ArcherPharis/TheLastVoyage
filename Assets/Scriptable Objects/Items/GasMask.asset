@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f39720b02bf2045489a679aaa48bad43, type: 3}
   m_Name: GasMask
   m_EditorClassIdentifier: 
-  ID: 4
   uiDisplay: {fileID: 21300000, guid: ac710cceecd69df48afa80835b62bb8e, type: 3}
+  stackable: 0
   type: 3
   description: 'Cracked Gas Mask used to explore outside the TerraArk. Seems to have
     been manufactured by a company called MAGNUS.  It doesn''t hold onto the air
@@ -21,4 +21,7 @@ MonoBehaviour:
 
 
     It''s best to find a replacement quickly. '
-  buffs: []
+  data:
+    Name: 
+    ID: 4
+    buffs: []

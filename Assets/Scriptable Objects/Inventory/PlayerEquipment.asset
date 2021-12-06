@@ -14,117 +14,80 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   savePath: 
   database: {fileID: 11400000, guid: e40447d485820cf4fa4922fd512c137f, type: 2}
+  type: 1
   ContainerOfInventory:
-    Items:
+    Slots:
     - AllowedItems: 02000000
-      parent: {fileID: 0}
-      ID: 2
-      item:
-        Name: CrimsonEfiyae
-        ID: 2
-        buffs:
-        - attribute: 0
-          value: 6
-          min: 3
-          max: 10
-        - attribute: 2
-          value: 13
-          min: 7
-          max: 14
-        - attribute: 5
-          value: 3
-          min: 3
-          max: 3
-      quantityOfItems: 1
-    - AllowedItems: 02000000
-      parent: {fileID: 0}
-      ID: -1
       item:
         Name: 
         ID: -1
         buffs: []
       quantityOfItems: 0
     - AllowedItems: 02000000
-      parent: {fileID: 0}
-      ID: -1
-      item:
-        Name: 
-        ID: -1
-        buffs: []
-      quantityOfItems: 0
-    - AllowedItems: 02000000
-      parent: {fileID: 0}
-      ID: 2
       item:
         Name: CrimsonEfiyae
-        ID: 2
-        buffs:
-        - attribute: 0
-          value: 8
-          min: 3
-          max: 10
-        - attribute: 2
-          value: 7
-          min: 7
-          max: 14
-        - attribute: 5
-          value: 3
-          min: 3
-          max: 3
-      quantityOfItems: 1
-    - AllowedItems: 01000000
-      parent: {fileID: 0}
-      ID: 3
-      item:
-        Name: MicroImpactDrill
-        ID: 3
-        buffs: []
-      quantityOfItems: 1
-    - AllowedItems: 03000000
-      parent: {fileID: 0}
-      ID: 4
-      item:
-        Name: GasMask
         ID: 4
-        buffs: []
+        buffs:
+        - attribute: 0
+          value: 1
+          min: 1
+          max: 4
+        - attribute: 2
+          value: 2
+          min: 2
+          max: 5
       quantityOfItems: 1
-    - AllowedItems: 05000000
-      parent: {fileID: 0}
-      ID: -1
+    - AllowedItems: 02000000
       item:
         Name: 
-        ID: 0
+        ID: -1
         buffs: []
       quantityOfItems: 0
-    - AllowedItems: 05000000
-      parent: {fileID: 0}
-      ID: -1
+    - AllowedItems: 02000000
+      item:
+        Name: 
+        ID: -1
+        buffs: []
+      quantityOfItems: 0
+    - AllowedItems: 01000000
+      item:
+        Name: 
+        ID: -1
+        buffs: []
+      quantityOfItems: 0
+    - AllowedItems: 03000000
       item:
         Name: 
         ID: -1
         buffs: []
       quantityOfItems: 0
     - AllowedItems: 05000000
-      parent: {fileID: 0}
-      ID: 1
-      item:
-        Name: NovicePotion
-        ID: 1
-        buffs: []
-      quantityOfItems: 1
-    - AllowedItems: 05000000
-      parent: {fileID: 0}
-      ID: -1
       item:
         Name: 
         ID: -1
         buffs: []
       quantityOfItems: 0
     - AllowedItems: 05000000
-      parent: {fileID: 0}
-      ID: 1
       item:
-        Name: NovicePotion
-        ID: 1
+        Name: 
+        ID: -1
         buffs: []
-      quantityOfItems: 1
+      quantityOfItems: 0
+    - AllowedItems: 05000000
+      item:
+        Name: 
+        ID: -1
+        buffs: []
+      quantityOfItems: 0
+    - AllowedItems: 05000000
+      item:
+        Name: 
+        ID: -1
+        buffs: []
+      quantityOfItems: 0
+    - AllowedItems: 05000000
+      item:
+        Name: 
+        ID: -1
+        buffs: []
+      quantityOfItems: 0

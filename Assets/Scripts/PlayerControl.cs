@@ -36,6 +36,7 @@ public class PlayerControl : MonoBehaviour
         if (inputs.PlayerSaved())
         {
             player.inventory.Save();
+            player.equipment.Save();
             Debug.Log("Player saved!");
         }
         
@@ -46,6 +47,7 @@ public class PlayerControl : MonoBehaviour
         if (inputs.PlayerLoaded())
         {
             player.inventory.Load();
+            player.equipment.Load();
             Debug.Log("Player loaded!");
         }
         
@@ -62,8 +64,14 @@ public class PlayerControl : MonoBehaviour
 
             if (item)
             {
-                player.inventory.AddItem(new Item(item.item), 1);
-                Destroy(interacted.collider.gameObject);
+                Item _item = new Item(item.item);
+
+                if(player.inventory.AddItem(_item, 1))
+                {
+                    Destroy(interacted.collider.gameObject);
+                }
+
+                
             }
         }
 

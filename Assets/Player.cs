@@ -12,6 +12,12 @@ public class Player : MonoBehaviour
     public InventoryObject equipment;
     public Attribute[] attributes;
 
+    private Transform tools;
+    private Transform powers;
+
+    public Transform toolTransform;
+    public Transform powerTransform;
+
     
 
     public void AttributeModified(Attribute attribute)
@@ -38,13 +44,13 @@ public class Player : MonoBehaviour
         }
         for (int i = 0; i < equipment.GetSlots.Length; i++)
         {
-            equipment.GetSlots[i].OnBeforeUpdate += OnBeforeSlotUpdate;
-            equipment.GetSlots[i].OnAfterUpdate += OnAfterSlotUpdate;
+            equipment.GetSlots[i].OnBeforeUpdate += OnRemoveItem;
+            equipment.GetSlots[i].OnAfterUpdate += OnAddItem;
         }
     }
 
 
-    public void OnBeforeSlotUpdate(InventorySlot _slot)
+    public void OnRemoveItem(InventorySlot _slot)
     {
         if (_slot.ItemObject == null)
             return;
@@ -63,6 +69,24 @@ public class Player : MonoBehaviour
                             attributes[j].value.RemoveModifier(_slot.item.buffs[i]);
                     }
                 }
+
+                if (_slot.ItemObject.characterDisplay != null)
+                {
+                    switch (_slot.AllowedItems[0])
+                    {
+
+                        case ItemType.Powers:
+                            Destroy(powers.gameObject);
+                            break;
+                        case ItemType.Tool:
+                            Destroy(tools.gameObject);
+                            break;
+
+
+
+                    }
+                }
+
                 break;
             case InterfaceType.Craft:
                 break;
@@ -72,7 +96,7 @@ public class Player : MonoBehaviour
 
     }
 
-    public void OnAfterSlotUpdate(InventorySlot _slot)
+    public void OnAddItem(InventorySlot _slot)
     {
         if (_slot.ItemObject == null)
             return;
@@ -91,6 +115,25 @@ public class Player : MonoBehaviour
                             attributes[j].value.AddModifier(_slot.item.buffs[i]);
                     }
                 }
+                if(_slot.ItemObject.characterDisplay != null)
+                {
+                    switch (_slot.AllowedItems[0])
+                    {
+
+                        case ItemType.Powers:
+                            powers = Instantiate(_slot.ItemObject.characterDisplay, powerTransform).transform;
+                            break;
+                        case ItemType.Tool:
+                            tools = Instantiate(_slot.ItemObject.characterDisplay, toolTransform).transform;
+                            break;
+
+
+                            
+                    }
+                }
+
+
+
                 break;
             case InterfaceType.Craft:
                 break;

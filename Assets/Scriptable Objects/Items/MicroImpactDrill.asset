@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: MicroImpactDrill
   m_EditorClassIdentifier: 
   uiDisplay: {fileID: 21300000, guid: 2038752a50dc58b42a0330a6de0542d0, type: 3}
+  characterDisplay: {fileID: 1323931987945395437, guid: d87752285ff86a840a83a7a33aad0063, type: 3}
   stackable: 0
   type: 1
   description: "A small device used for destroying small veins of Amberite or Efiyae. 
@@ -20,5 +21,5 @@ MonoBehaviour:
     this belongs to somebody?"
   data:
     Name: 
-    ID: 3
+    ID: 2
     buffs: []

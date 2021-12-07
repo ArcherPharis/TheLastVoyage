@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: CrimsonEfiyae
   m_EditorClassIdentifier: 
   uiDisplay: {fileID: 21300000, guid: 9dc7afbcf3991534e82d3c23f3e503c0, type: 3}
+  characterDisplay: {fileID: 1323931987945395437, guid: d87752285ff86a840a83a7a33aad0063, type: 3}
   stackable: 0
   type: 2
   description: "An adult Crimson Efiyae in its early stages of Adulthood, offers
@@ -32,3 +33,7 @@ MonoBehaviour:
       value: 0
       min: 2
       max: 5
+    - attribute: 5
+      value: 0
+      min: 3
+      max: 3

@@ -82,7 +82,6 @@ public class PlayerControl : MonoBehaviour
     
     public void PlayerRun()
     {
-        float originalSpeed = playerSpeed;
         float newSpeed = 8f;
         
         if (notRunning)
@@ -109,7 +108,6 @@ public class PlayerControl : MonoBehaviour
         }
 
      
-        Debug.Log(originalSpeed);
 
 
     }

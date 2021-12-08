@@ -57,6 +57,22 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Lift"",
+                    ""type"": ""Button"",
+                    ""id"": ""ca621bf1-2544-41d9-87f3-9179d23514e9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Throw"",
+                    ""type"": ""Button"",
+                    ""id"": ""fb0f5072-61bc-4dde-9084-0d4f18cf4793"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -158,6 +174,28 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""action"": ""Run"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8dcb5d4f-2596-4c92-b535-3e2f15afa806"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Lift"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0b7e43ca-36a0-4475-9061-34991c842e50"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -217,6 +255,8 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         m_PlayerMovement_Look = m_PlayerMovement.FindAction("Look", throwIfNotFound: true);
         m_PlayerMovement_Interact = m_PlayerMovement.FindAction("Interact", throwIfNotFound: true);
         m_PlayerMovement_Run = m_PlayerMovement.FindAction("Run", throwIfNotFound: true);
+        m_PlayerMovement_Lift = m_PlayerMovement.FindAction("Lift", throwIfNotFound: true);
+        m_PlayerMovement_Throw = m_PlayerMovement.FindAction("Throw", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Save = m_UI.FindAction("Save", throwIfNotFound: true);
@@ -275,6 +315,8 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerMovement_Look;
     private readonly InputAction m_PlayerMovement_Interact;
     private readonly InputAction m_PlayerMovement_Run;
+    private readonly InputAction m_PlayerMovement_Lift;
+    private readonly InputAction m_PlayerMovement_Throw;
     public struct PlayerMovementActions
     {
         private @PlayerInputs m_Wrapper;
@@ -284,6 +326,8 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         public InputAction @Look => m_Wrapper.m_PlayerMovement_Look;
         public InputAction @Interact => m_Wrapper.m_PlayerMovement_Interact;
         public InputAction @Run => m_Wrapper.m_PlayerMovement_Run;
+        public InputAction @Lift => m_Wrapper.m_PlayerMovement_Lift;
+        public InputAction @Throw => m_Wrapper.m_PlayerMovement_Throw;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -308,6 +352,12 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @Run.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnRun;
                 @Run.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnRun;
                 @Run.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnRun;
+                @Lift.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnLift;
+                @Lift.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnLift;
+                @Lift.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnLift;
+                @Throw.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnThrow;
+                @Throw.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnThrow;
+                @Throw.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnThrow;
             }
             m_Wrapper.m_PlayerMovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -327,6 +377,12 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @Run.started += instance.OnRun;
                 @Run.performed += instance.OnRun;
                 @Run.canceled += instance.OnRun;
+                @Lift.started += instance.OnLift;
+                @Lift.performed += instance.OnLift;
+                @Lift.canceled += instance.OnLift;
+                @Throw.started += instance.OnThrow;
+                @Throw.performed += instance.OnThrow;
+                @Throw.canceled += instance.OnThrow;
             }
         }
     }
@@ -379,6 +435,8 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
+        void OnLift(InputAction.CallbackContext context);
+        void OnThrow(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

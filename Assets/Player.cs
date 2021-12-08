@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     {
         inventory.Clear();
         equipment.Clear();
+
     }
 
     private void Start()

@@ -19,6 +19,7 @@ public class KeyEventReciever : MonoBehaviour
         if (eventInitiaterTrigger.KeyIsInSocket())
         {
             animator.SetTrigger(triggerName);
+            
         }
     }
 }

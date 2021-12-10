@@ -25,18 +25,10 @@ MonoBehaviour:
       quantityOfItems: 0
     - AllowedItems: 02000000
       item:
-        Name: CrimsonEfiyae
-        ID: 4
-        buffs:
-        - attribute: 0
-          value: 1
-          min: 1
-          max: 4
-        - attribute: 2
-          value: 2
-          min: 2
-          max: 5
-      quantityOfItems: 1
+        Name: 
+        ID: -1
+        buffs: []
+      quantityOfItems: 0
     - AllowedItems: 02000000
       item:
         Name: 

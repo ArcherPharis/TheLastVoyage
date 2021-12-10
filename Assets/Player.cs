@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -11,18 +12,73 @@ public class Player : MonoBehaviour
     public InventoryObject inventory;
     public InventoryObject equipment;
     public Attribute[] attributes;
+    [SerializeField] GameObject spellList;
 
     private Transform tools;
     private Transform powers;
 
     public Transform toolTransform;
     public Transform powerTransform;
+    ItemObject obh;
+    bool spellIsThere = false;
+    public float currentOxygen;
+    [SerializeField] float oxygenDegredationRate = 2f;
+    [SerializeField]Text oxygenText;
+
+
+    
 
     
 
     public void AttributeModified(Attribute attribute)
     {
         Debug.Log(string.Concat(attribute.type, " was increased. Value of stat is now ", attribute.value.ModifiedValue));
+    }
+
+
+    public void AddOxygenAtStart()
+    {
+        int oxy = attributes[3].value.ModifiedValue;
+        currentOxygen = oxy + 10;
+
+    }
+
+
+
+
+    public void FireCheck(Attribute attribute)
+    {
+        
+
+        int valueOfStat = attributes[5].value.ModifiedValue;
+        valueOfStat = attribute.value.ModifiedValue;
+
+
+
+        if (valueOfStat == 3)
+        {
+            //var item = spellList.GetComponent<SpellList>();
+
+            spellIsThere = true;
+            //if (item)
+            //{
+            //    //Item _item = new Item(item.spells);
+            //    //inventory.AddItem(_item, 1);
+            //    
+
+
+            //}
+
+        }
+        else if( valueOfStat <= 3)
+        {
+            spellIsThere = false;
+        }
+    }
+
+    public bool SpellCheck()
+    {
+        return spellIsThere;
     }
 
 
@@ -38,6 +94,10 @@ public class Player : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
 
+        AddOxygenAtStart();
+
+    
+
 
         for (int i = 0; i < attributes.Length; i++)
         {
@@ -48,6 +108,20 @@ public class Player : MonoBehaviour
             equipment.GetSlots[i].OnBeforeUpdate += OnRemoveItem;
             equipment.GetSlots[i].OnAfterUpdate += OnAddItem;
         }
+
+        
+    }
+
+    private void Update()
+    {
+
+        AddOxygenAtStart();
+
+        //currentOxygen -= Time.deltaTime * oxygenDegredationRate;
+
+
+        oxygenText.text = currentOxygen.ToString();
+        //FireCheck(attributes[5]);
     }
 
 
@@ -104,6 +178,9 @@ public class Player : MonoBehaviour
         switch (_slot.parent.inventory.type)
         {
             case InterfaceType.Inventory:
+
+
+
                 break;
             case InterfaceType.Equipment:
                 print(string.Concat("Placed ", _slot.ItemObject, " on ", _slot.parent.inventory.type, " Allowed Items: ", string.Join(", ", _slot.AllowedItems)));
@@ -157,10 +234,18 @@ public class Attribute
     {
         parent = _parent;
         value = new ModifiableInt(AttributeModified);
+        
     }
 
+    
     public void AttributeModified()
     {
+        parent.FireCheck(this);
         parent.AttributeModified(this);
+        
+
     }
+
+    
+
 }

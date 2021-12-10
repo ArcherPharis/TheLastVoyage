@@ -56,6 +56,8 @@ public class Item
         Name = "";
         ID = -1;
     }
+
+
     public Item(ItemObject item)
     {
         Name = item.name;

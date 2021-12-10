@@ -60,6 +60,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Power1",
+                    "type": "Button",
+                    "id": "8327cae7-149f-42a1-ad2c-4816fe032af2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -183,6 +191,17 @@
                     "action": "Throw",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "16ba780f-6649-4708-903d-8e8aaceb8eda",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Power1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -202,6 +221,14 @@
                     "name": "Load",
                     "type": "Button",
                     "id": "088bcd2f-a77f-4fca-9a54-56166a69317b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "2d75c534-30da-4bd0-93cb-c3df046fdc28",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -227,6 +254,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Load",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d10c15d2-3e2d-4f0f-919b-87c09a11a77a",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -22,6 +22,7 @@ public class InventoryObject : ScriptableObject
     public InterfaceType type;
     public Inventory ContainerOfInventory;
     public InventorySlot[] GetSlots { get { return ContainerOfInventory.Slots; } }
+    InventorySlot itemobj;
 
 
 
@@ -150,6 +151,11 @@ public class InventoryObject : ScriptableObject
     public void Clear()
     {
         ContainerOfInventory.Clear();
+    }
+    
+    public void ClearPower()
+    {
+        itemobj.RemoveItem();
     }
 
 

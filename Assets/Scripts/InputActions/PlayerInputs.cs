@@ -73,6 +73,14 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Power1"",
+                    ""type"": ""Button"",
+                    ""id"": ""8327cae7-149f-42a1-ad2c-4816fe032af2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -196,6 +204,17 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""action"": ""Throw"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""16ba780f-6649-4708-903d-8e8aaceb8eda"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Power1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -215,6 +234,14 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""name"": ""Load"",
                     ""type"": ""Button"",
                     ""id"": ""088bcd2f-a77f-4fca-9a54-56166a69317b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""2d75c534-30da-4bd0-93cb-c3df046fdc28"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -242,6 +269,17 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                     ""action"": ""Load"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d10c15d2-3e2d-4f0f-919b-87c09a11a77a"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -257,10 +295,12 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         m_PlayerMovement_Run = m_PlayerMovement.FindAction("Run", throwIfNotFound: true);
         m_PlayerMovement_Lift = m_PlayerMovement.FindAction("Lift", throwIfNotFound: true);
         m_PlayerMovement_Throw = m_PlayerMovement.FindAction("Throw", throwIfNotFound: true);
+        m_PlayerMovement_Power1 = m_PlayerMovement.FindAction("Power1", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Save = m_UI.FindAction("Save", throwIfNotFound: true);
         m_UI_Load = m_UI.FindAction("Load", throwIfNotFound: true);
+        m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -317,6 +357,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerMovement_Run;
     private readonly InputAction m_PlayerMovement_Lift;
     private readonly InputAction m_PlayerMovement_Throw;
+    private readonly InputAction m_PlayerMovement_Power1;
     public struct PlayerMovementActions
     {
         private @PlayerInputs m_Wrapper;
@@ -328,6 +369,7 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         public InputAction @Run => m_Wrapper.m_PlayerMovement_Run;
         public InputAction @Lift => m_Wrapper.m_PlayerMovement_Lift;
         public InputAction @Throw => m_Wrapper.m_PlayerMovement_Throw;
+        public InputAction @Power1 => m_Wrapper.m_PlayerMovement_Power1;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -358,6 +400,9 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @Throw.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnThrow;
                 @Throw.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnThrow;
                 @Throw.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnThrow;
+                @Power1.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnPower1;
+                @Power1.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnPower1;
+                @Power1.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnPower1;
             }
             m_Wrapper.m_PlayerMovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -383,6 +428,9 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @Throw.started += instance.OnThrow;
                 @Throw.performed += instance.OnThrow;
                 @Throw.canceled += instance.OnThrow;
+                @Power1.started += instance.OnPower1;
+                @Power1.performed += instance.OnPower1;
+                @Power1.canceled += instance.OnPower1;
             }
         }
     }
@@ -393,12 +441,14 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
     private IUIActions m_UIActionsCallbackInterface;
     private readonly InputAction m_UI_Save;
     private readonly InputAction m_UI_Load;
+    private readonly InputAction m_UI_Pause;
     public struct UIActions
     {
         private @PlayerInputs m_Wrapper;
         public UIActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @Save => m_Wrapper.m_UI_Save;
         public InputAction @Load => m_Wrapper.m_UI_Load;
+        public InputAction @Pause => m_Wrapper.m_UI_Pause;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -414,6 +464,9 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @Load.started -= m_Wrapper.m_UIActionsCallbackInterface.OnLoad;
                 @Load.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnLoad;
                 @Load.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnLoad;
+                @Pause.started -= m_Wrapper.m_UIActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -424,6 +477,9 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
                 @Load.started += instance.OnLoad;
                 @Load.performed += instance.OnLoad;
                 @Load.canceled += instance.OnLoad;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -437,10 +493,12 @@ public class @PlayerInputs : IInputActionCollection, IDisposable
         void OnRun(InputAction.CallbackContext context);
         void OnLift(InputAction.CallbackContext context);
         void OnThrow(InputAction.CallbackContext context);
+        void OnPower1(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
         void OnSave(InputAction.CallbackContext context);
         void OnLoad(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }

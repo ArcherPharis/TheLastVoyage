@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   savePath: /inventory.lvif
   database: {fileID: 11400000, guid: e40447d485820cf4fa4922fd512c137f, type: 2}
+  type: 0
   ContainerOfInventory:
-    Items:
+    Slots:
     - AllowedItems: 
       item:
         Name: 

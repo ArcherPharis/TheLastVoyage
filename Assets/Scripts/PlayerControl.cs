@@ -62,9 +62,10 @@ public class PlayerControl : MonoBehaviour
         {
             var item = interacted.collider.GetComponent<GroundItem>();
 
-            if (item)
+            if (item && item.enabled)
             {
                 Item _item = new Item(item.item);
+                //we say that item somehow equals the ID of Wisp.
 
                 if(player.inventory.AddItem(_item, 1))
                 {

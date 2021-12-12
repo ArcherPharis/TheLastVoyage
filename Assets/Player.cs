@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class Player : MonoBehaviour
     [SerializeField]Text oxygenText;
 
 
+
     
 
     
@@ -41,6 +43,12 @@ public class Player : MonoBehaviour
         int oxy = attributes[3].value.ModifiedValue;
         currentOxygen = oxy + 10;
 
+    }
+
+    public void Test(Attribute attribute)
+    {
+        float newValueOfOxygen = attributes[3].value.ModifiedValue;
+        currentOxygen = newValueOfOxygen;
     }
 
 
@@ -112,12 +120,21 @@ public class Player : MonoBehaviour
         
     }
 
+    void Death()
+    {
+        if(currentOxygen <= 0)
+        {
+            SceneManager.LoadScene("TestScene");
+        }
+    }
+
     private void Update()
     {
 
-        AddOxygenAtStart();
+        //AddOxygenAtStart();
+        Death();
 
-        //currentOxygen -= Time.deltaTime * oxygenDegredationRate;
+        currentOxygen -= Time.deltaTime * oxygenDegredationRate;
 
 
         oxygenText.text = currentOxygen.ToString();
@@ -242,6 +259,7 @@ public class Attribute
     {
         parent.FireCheck(this);
         parent.AttributeModified(this);
+        parent.Test(this);
         
 
     }
